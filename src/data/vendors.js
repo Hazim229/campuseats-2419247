@@ -1,8 +1,8 @@
 const vendors = [
   {
     id: 'my-restaurant',
-    name: 'Kafe Mahallah Bilal',
-    location: 'Mahallah Bilal, Ground Floor',
+    name: 'Kafe Mahallah Zubair',
+    location: 'Mahallah Zubair, Ground Floor',
     openHours: '7:00 am - 10:00 pm',
     isOpen: true,
     menu: [
