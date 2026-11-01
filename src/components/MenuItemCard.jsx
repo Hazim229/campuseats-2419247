@@ -1,11 +1,9 @@
-
 function MenuItemCard({ item, onAdd, onViewItem }) {
   function handleCardClick() {
     if (onViewItem) {
       onViewItem(item);
     }
   }
-
   return (
     <article
       className="card menu-card"
@@ -14,7 +12,6 @@ function MenuItemCard({ item, onAdd, onViewItem }) {
       <div className="thumb" aria-hidden="true">
         {item.name.charAt(0)}
       </div>
-
       <p className="tag">{item.category}</p>
       <h3>{item.name}</h3>
       <p className="muted">{item.description}</p>
@@ -34,5 +31,4 @@ function MenuItemCard({ item, onAdd, onViewItem }) {
     </article>
   );
 }
-
 export default MenuItemCard;

@@ -34,7 +34,7 @@ function CheckoutForm({ onPlaceOrder }) {
     setValues((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(event) {
+  function handleSubmit(event) { 
     event.preventDefault();
     const found = validate(values);
     setErrors(found);

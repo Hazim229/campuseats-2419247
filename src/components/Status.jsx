@@ -1,7 +1,6 @@
 export function Loading() {
   return <p className="muted" role="status">Loading menus…</p>;
 }
-
 export function ErrorMessage({ message, onRetry }) {
   return (
     <div className="card error" role="alert">
