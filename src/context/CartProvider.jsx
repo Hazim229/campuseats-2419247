@@ -1,4 +1,3 @@
-
 import { useMemo } from "react";
 import { CartContext } from "./cart-context.js";
 import { useLocalStorage } from "../hooks/useLocalStorage.js";
@@ -7,9 +6,8 @@ import { useAuth } from "../hooks/useAuth.js";
 export function CartProvider({ children }) {
   const { user } = useAuth();
 
-  // Preserve Week 4 cart and order storage
+  // The cart stays in localStorage. Placed orders now live in Firestore (Week 6).
   const [cart, setCart] = useLocalStorage("campuseats-cart", []);
-  const [orders, setOrders] = useLocalStorage("campuseats-orders", []);
 
   // Save notes separately for each authenticated user
   const notesKey = user
@@ -101,15 +99,8 @@ export function CartProvider({ children }) {
     );
   }
 
-  function placeOrder(details) {
-    const order = {
-      ...details,
-      items: cartWithUserNotes,
-      total,
-      id: Date.now(),
-    };
-
-    setOrders((prev) => [...prev, order]);
+  // Called after the order is saved to Firestore
+  function clearCart() {
     setCart([]);
 
     // Clear the current user's notes after checkout
@@ -121,16 +112,15 @@ export function CartProvider({ children }) {
   const value = useMemo(
     () => ({
       cart: cartWithUserNotes,
-      orders,
       count,
       total,
       addToCart,
       changeQty,
       removeFromCart,
       updateNote,
-      placeOrder,
+      clearCart,
     }),
-    [cart, orders, notes, user, count, total]
+    [cart, notes, user, count, total]
   );
 
   return (

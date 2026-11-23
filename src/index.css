@@ -548,3 +548,9 @@ start; }
 .form input, .form select { padding: 0.5rem; border: 1px solid #c5cbd3; border-radius: 8px; font: inherit; }
 .field-error { color: #b3261e; font-size: 0.85rem; margin: 0; }
 .error { border-left: 4px solid #b3261e; }
+
+.order-actions { display: flex; flex-wrap: wrap; gap: 0.5rem;
+  align-items: center; margin-top: 0.6rem; }
+.order-actions input { width: auto; }
+.order-items { list-style: none; padding: 0; margin: 0.25rem 0; }
+.order-note { font-style: italic; }
