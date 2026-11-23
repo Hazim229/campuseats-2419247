@@ -2,9 +2,11 @@ import { useNavigate } from "react-router";
 import CartItem from "../components/CartItem.jsx";
 import CheckoutForm from "../components/CheckoutForm.jsx";
 import { useCart } from "../hooks/useCart.js";
+import { useAuth } from "../hooks/useAuth.js";
 
 function CartPage() {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const {
     cart,
@@ -36,6 +38,8 @@ function CartPage() {
             <CartItem
               key={line.item.id}
               line={line}
+              note={line.note ?? ""}
+              isAuthenticated={Boolean(user)}
               onChangeQty={changeQty}
               onRemove={removeFromCart}
               onUpdateNote={updateNote}

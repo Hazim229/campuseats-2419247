@@ -1,6 +1,14 @@
-function CartItem({ line, onChangeQty, onRemove, onUpdateNote }) {
-  const { item, qty, note = "" } = line;
+import { NavLink } from "react-router";
 
+function CartItem({
+  line,
+  note = "",
+  isAuthenticated,
+  onChangeQty,
+  onRemove,
+  onUpdateNote,
+}) {
+  const { item, qty } = line;
   return (
     <li className="cart-line">
       <div>
@@ -10,17 +18,25 @@ function CartItem({ line, onChangeQty, onRemove, onUpdateNote }) {
           RM {item.price.toFixed(2)} each
         </p>
 
-        <label>
-          Order note:
-          <input
-            type="text"
-            placeholder="e.g. Less sugar, no ice..."
-            value={note}
-            onChange={(e) =>
-              onUpdateNote(item.id, e.target.value)
-            }
-          />
-        </label>
+        {isAuthenticated ? (
+          <label>
+            Order note:
+            <input
+              type="text"
+              placeholder="e.g. Less sugar, no ice..."
+              value={note}
+              onChange={(e) =>
+                onUpdateNote(item.id, e.target.value)
+              }
+            />
+          </label>
+        ) : (
+          <p className="muted">
+            <NavLink to="/login">
+              Log in to add notes
+            </NavLink>
+          </p>
+        )}
       </div>
 
       <div className="qty">
@@ -55,5 +71,4 @@ function CartItem({ line, onChangeQty, onRemove, onUpdateNote }) {
     </li>
   );
 }
-
 export default CartItem;
